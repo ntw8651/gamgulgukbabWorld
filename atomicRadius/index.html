@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js" integrity="sha256-+8RZJua0aEWg+QVVKg4LEzEEm/8RFez5Tb4JBNiV5xA=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <meta charset="UTF-8">
+    <title>2주기, 3주기의 원소의 원자 반지름</title>
+
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  
+  <body bgcolor='white'>
+    <nav>
+      <h5>ntw zone</h5>
+      <ul class="menu">
+        <li><a>maker: ntw</a></li>
+        <li><a>email: ntw8651@gmail.com</a></li>
+        <li><a href="https://github.com/ntwntw369" target="_blank">github</a></li>
+        <li><a>임시 주기율표(1~3주기)</a></li>
+        <li><a>H&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;He</a></li>
+        <li><a>Li&nbsp;&nbsp;Be&nbsp;&nbsp;&nbsp;B&nbsp;&nbsp;C N O F&nbsp;Ne</a></li>
+        <li><a>Na Mg Al Si P S Cl Ar</a></li>
+  
+      </ul>
+    </nav>
+
+
+
+    <div class="right">
+    <div class="normal">
+    <h1>원자의 반지름에 대하여...</h1>
+    <p>이 페이지는 주로 2주기, 3주기 원소의 유효 핵전하, 원자 반지름, 이온화 에너지의 변화를 차트로 보여주며,</p>
+    <p>각 값에 변화에 따른 경향성 분석 내용이 표기되어 있습니다.</p>
+    <p>이는 화학 교과서 원소의 주기적 성질에 대한 내용입니다.</p>
+
+    <p>각 용어의 정의는 다음과 같습니다.</p>
+    <h3>원자가 전자</h3>
+    <p>&nbsp;&nbsp;화학적 결합에 참여할 수 있는, 가장 바깥 쪽의 전자</p>
+    <h3>유효 핵전하</h3>
+    <p>&nbsp;&nbsp;가려막기 효과를 고려했을 때, 전자가 느끼는 실제 핵전하</p>
+    <h3>가려막기 효과</h3>
+    <p>&nbsp;&nbsp;전자 사이의 반발력이 원자핵과 전자 사이의 인력을 약하게 만드는 현상</p>
+    <h3>원자 반지름</h3>
+    <p>&nbsp;&nbsp;원자핵과 가장 바깥 궤도의 전자 사이의 거리</p>
+    <h3>이온화 에너지</h3>
+    <p>&nbsp;&nbsp;기체 상태의 원자 1 mol에서 전자 1 mol을 떼어 내는 데 필요한 에너지</p>
+    
+    <br><br><br>
+    </div>
+
+    
+    <h2>유효 핵전하 변화</h2>
+    <div class="chart-wrap">
+        <canvas id="uesableAtom" style="width: 50%; height: 50%;"></canvas>
+    </div>
+
+    <div class="normal">
+      <p>위의 차트에서 핵전하와 전자가 원자 번호에 따라 동시에 증가할 때, 유효 핵 전하가 증가추세를 보이는 것으로 핵전하가 전자의 가려막기 효과보다 더 큰 영향을 준다는 것을 알 수 있습니다.</p>
+      <p>또한 주목할만한 점은 2주기 18족 원소인 Ne이 3주기 1족 원소 Na보다 유효 핵전하가 높단 점입니다. 이는 안쪽 전자껍질의 전자에 의한 가려막기 효과 때문입니다.</p>
+      <p>이를 통해 다음과 같은 결과를 도출할 수 있습니다.</p>
+    </div>
+
+    <div class="important normal">
+      <h3>같은 주기일 때 (전자 껍질 수가 같을 때),</h3>
+      <p>&nbsp;&nbsp;핵전하 증가폭이 가려막기 효과 증가폭보다 크므로,</p>
+      <p>&nbsp;&nbsp;원자 번호 증가 -> 원자가 전자의 유효 핵전하 증가</p>
+
+      <h3>같은 족일 때 (원자가 전자 수가 같을 때),</h3>
+      <p>&nbsp;&nbsp;핵전하 증가폭이 가려막기 효과 증가폭보다 크므로,</p>
+      <p>&nbsp;&nbsp;원자 번호 증가 -> 원자가 전자의 유효 핵전하 증가</p>
+    </div>
+    <br><br><br>
+
+    <h2>원자 반지름 변화</h2>
+    <div class="chart-wrap">
+        <canvas id="one" style="width: 50%; height: 50%;"></canvas>
+    </div>
+
+    <br>
+
+    <div class="normal">
+    <p>위는 각 주기마다의 원자 반지름의 변화를 나타낸 차트입니다.</p>
+    <p>높은 족으로 갈수록 원자 반지름이 작아지는 모습이 보이고, 2주기 원소의 반지름이 3주기 원소보다 작은 것을 볼 수 있습니다.</p>
+    <p></p>
+    <br>
+    <p>위의 유효 핵전하의 변화와 연관지어 생각해보면 다음과 같은 경향성을 알 수 있습니다.</p>
+    </div>
+    
+    <div class='important normal'>
+        <h3>같은 주기일 때 (전자 껍질 수가 같을 때),</h3>
+        <p>&nbsp;&nbsp;원자 번호가 증가함에 따라 유효 핵전하 수가 증가하기 때문에,</p>
+        <p>&nbsp;&nbsp;원자 번호 증가 -> 원자 반지름 감소</p>
+        
+        <h3>같은 족일 때 (원자가 전자 수가 같을 때),</h3>
+        <p>&nbsp;&nbsp;원자 번호가 증가함에 전자껍질 수가가 증가하기 때문에,</p>
+        <p>&nbsp;&nbsp;원자 번호 증가 -> 원자 반지름 증가</p>
+    </div>
+    
+
+    <br><br><br>
+
+
+    <h2>이온화 에너지 변화</h2>
+    <div class="chart-wrap">
+      <canvas id="ion"></canvas>
+    </div>
+    <div class="normal">
+      <p>위는 원자 번호에 따라 이온화 에너지가 어떻게 달라지는 지를 나타낸 그래프입니다.</p>
+      <p>같은 주기에선 원자번호가 커질수록 유효핵전하는 증가하므로 이온화 에너지 또한 대체로 증가하는 모습을 볼 수 있습니다.</p>
+      <p>이때, 4번과 7번 같은 경우(2족과 15족)는 예외적으로 오비탈이 바뀌며 이온화 에너지가 감소합니다.</p>
+      <p>또한 원자 번호가 2, 10, 18, 즉 주기가 바뀌는 지점에서 이온화 에너지가 큰폭으로 감소하는 것을 볼 수 있습니다.</p>
+      <p>이에 핵전하보다 전자껍질 수가 이온화 에너지에 미치는 영향이 더 크다는 점을 알 수 있습니다.</p>
+      <br>
+      <p>이온화 에너지 변화를 정리하면 다음과 같습니다.</p>
+    </div>
+    <div class="important normal">
+      <h3>같은 주기일 때 (전자 껍질 수가 같을 때),</h3>
+        <p>&nbsp;&nbsp;유효 핵전하가 증가하므로,</p>
+        <p>&nbsp;&nbsp;원자 번호 증가 -> 이온화 에너지 (*대체로)증가</p>
+        <p>&nbsp;&nbsp;*예외) 2족, 15족</p>
+        
+        <h3>같은 족일 때 (원자가 전자 수가 같을 때),</h3>
+        <p>&nbsp;&nbsp;전자껍질 수가 증가하므로,</p>
+        <p>&nbsp;&nbsp;원자 번호 증가 -> 이온화 에너지 감소</p>
+    </div>
+    <br><br><br>
+
+    <h2>원자와 이온의 반지름 변화</h2>
+    <div class="chart-wrap">
+      <canvas id="ionradius"></canvas>
+    </div>
+    <div class="normal">
+    <p>이온의 목표 배치인 비활성 기체의 원자번호는 He: 2, Ne: 10, Ar: 18 입니다.</p>
+    <p>예시로 Ne의 배치를 목표로 하는 원소를 살펴보면, 비금속 원소로는 N, O, F이 있으며 금속 원소로는 Na, Mg이 있습니다.</p>
+    <p>전자를 버리고 이온이 되는 양이온(금속원소), 전자를 얻어서 이온이 되려는 음이온(비금속원소) 모두 같은 주기 내에서는 원자번호가 커짐에 따라 이온 반지름이 작아지는 경향을 보여줍니다.</p>
+    <p>또한 같은 족 내에서는 원자번호가 커짐에 따라(이 차트로는 보기 다소 힘들 수 있습니다) 이온 반지름이 커지는 모습을 보여줍니다.</p>
+    <p>각각은 유효 핵전하와 전자껍질 수의 증가에 따라 나타나는 모습입니다.</p>
+    
+    <p>그리고 각 주기에서 비슷한 감소세를 볼 수 있습니다.</p>
+    <br>
+    <p>기본 반지름과 비교해서 알 수 있는 점으로는, 양이온이 될 경우 반지름이 감소하고, 음이온이 될 경우 반지름이 증가한다는 점을 알 수 있습니다.</p>
+    <p>이 점 또한 전자가 반지름에 영향을 끼친다는 사실을 알려줍니다.</p>
+    <br>
+    <p>이온의 반지름 변화를 정리하면 다음과 같습니다.</p>
+    <div class="important">
+      <h3>같은 주기일 때 (전자 껍질 수가 같을 때),</h3>
+        <p>&nbsp;&nbsp;유효 핵전하가 증가하므로,</p>
+        <p>&nbsp;&nbsp;원자 번호 증가 -> 이온 반지름 감소</p>
+        <p>&nbsp;&nbsp;예외) 2족, 15족</p>
+        
+        <h3>같은 족일 때 (원자가 전자 수가 같을 때),</h3>
+        <p>&nbsp;&nbsp;전자껍질 수가 증가하므로,</p>
+        <p>&nbsp;&nbsp;원자 번호 증가 -> 이온 반지름 증가</p>
+    </div>
+
+    </div>
+    <br><br><br>
+    <div class="normal">
+      <p>모든 차트를 보았을 때, 원자와 이온의 반지름에 끼치는 요인과 그 관계를 이끌어 낼 수 있습니다.</p>
+      <div class="important">
+      <h4>1. 전자가 많을수록 반지름은 증가한다.</h4>
+      <h4>2. 전자껍질 수가 많을수록 반지름은 증가한다.</h4>
+      <h4>3. 유효 핵전하가 증가할수록 반지름은 감소한다.</h4>
+      </div>
+      <p>또한 각 요인이 얼마나 영향을 끼치는 지 알 수 있습니다.</p>
+      <div class="important">
+      <h3>전자껍질 수 > 유효 핵 전하 > 전자 수</h3>
+      </div>
+    </div>
+
+    
+
+
+
+
+    <br><br><br><br>
+    <div class="normal">
+    <h4>해당 페이지의 존재 의의</h4>
+      <p>유효 핵 전하, 원자 반지름 등은 시간의 흐름에 따라 측정 방법이 바뀌고, 정확성이 올라가며 값이 바뀌어 갑니다.</p>
+      <p>해당 값들이 책과 같이 고정적인 매체에 표기된다면, 오랜 시간이 지날 경우 신뢰성과 정확성이 떨어지게 됩니다.</p>
+      <p>하지만 해당 페이지는 유동적으로 값을 업데이트 할 수 있으므로 늘 최신 정보를 제공할 수 있습니다.</p>
+      <p>몇가지 추가적인 수정을 통해 값을 과학계 사이트에서 따오며 요청에 따라 자동 반영한다면, 하나하나 직접 수정할 필요도 없으리라 생각합니다.</p>
+      <p>또한 업데이트를 통해 4주기, 5주기의 원소도 다룰 수 있도록 확장해 나갈 수 있다는 점에서 발전 가능성을 지니고 있습니다.</p>
+      <p>무엇보다도 링크로 가볍게 지식을 공유할 수 있게 하자는 목적에서 만들어졌습니다.</p>
+    </div>
+    <br>
+    <div class="normal">
+      <h4>만들며...</h4>
+      <p>해당 웹페이지를 제작하기 위해 경향성을 조사하며 차트로 나타내는 과정에서, 해당 단원을 보다 깊이 이해할 수 있었습니다.</p>
+      <p>이 페이지에서는 차트가 이용된 것처럼, 다른 지식의 경우 간단한 애니메이션 효과, 이미지, 영상 및 상호작용 할 수 있는 것으로 학습에 도움이 될 수 있으리란 것을 깨달았습니다.</p>
+      <p>마지막으로 계속해서 페이지를 업데이트 할 수 있다는 점을 이용해, 이 외의 지식(화학을 넘어서, 물리, 지구, 생명까지)도 웹페이지로 제작해 공유할 생각입니다.</p>
+      
+      </div>
+    <hr><hr>
+    <div class="normal">
+    <h3>참고 자료</h3>
+    <a href="https://en.wikipedia.org/wiki/Covalent_radius#Average_radii" target="_blank">원자 반지름(공유 반지름을 참고함), https://en.wikipedia.org/wiki/Covalent_radius#Average_radii</a>
+    <br>
+    <a href="https://en.wikipedia.org/wiki/Effective_nuclear_charge#Values" target="_blank">유효 핵 전하, https://en.wikipedia.org/wiki/Effective_nuclear_charge#Values</a>
+    <br>
+    <a href="https://www.chartjs.org/docs/latest/" target="_blank">차트 표현 api, https://www.chartjs.org/docs/latest/</a>
+    <br>
+    <a href="https://en.wikipedia.org/wiki/Ionic_radius#Determination" target="_blank">이온화 반지름, https://en.wikipedia.org/wiki/Ionic_radius#Determination</a>
+    <br>
+    <a>화학 교과서 및 프린트</a>
+    <br><br><br>
+  </div>
+</div>
+    <script src="./java.js"></script>
+
+
+  </body>
+</html>

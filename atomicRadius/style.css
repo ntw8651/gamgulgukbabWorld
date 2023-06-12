@@ -1,0 +1,57 @@
+
+body, html{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.chart-wrap{
+    margin:0 auto;
+    width: 800px;
+    height: 500px;
+}
+h2{
+    text-align: center;
+}
+.important {
+    width: 80%;
+    background-color: #bdf;
+    border: 2px solid #1bf;
+    padding: 0.5rem;
+    line-height: 1rem;
+  }
+.normal{
+    margin: 0 auto; 
+    width: 60%;
+}
+nav{
+    width:250px;
+    background-color: #eee;
+    border-right: 1px solid #ddd;
+
+    position: fixed;
+    height: 100%;
+}
+.right{
+    padding-left: 250px;
+}
+.menu li a{
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    padding: 0 20px;
+    font-size: 12px;
+    color:#555;
+}
+h5{
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    padding: 0 20px;
+    font-size: 20px;
+    color:#555;
+}
+.menu li a:hover{
+    background-color: #559;
+    color: white;
+}
