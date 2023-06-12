@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #container {
+      position: relative;
+      width: 400px;
+      height: 300px;
+      border: 1px solid black;
+    }
+
+    #liquid {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      border-radius: 50%;
+      transition: 0.5s;
+    }
+
+    #table {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 70px;
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 0px;
+      overflow: hidden;
+
+    }
+    #textGroup{
+      position: absolute;
+      top: 10px;
+      left: 55%;
+      transform: translateX(0%);
+      width: 300px;
+      height: 250px;
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 0px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="liquid"></div>
+    <div id="table"></div>
+  </div>
+  <div id="textGroup">
+      <h2>표면장력은...</h2>
+      <p>온도, 농도에 반비례합니다.</p>
+      <p>극성, 분자량에 비례합니다.</p>
+      <p>농도는 불순물인 용질 농도를 의미합니다.</p>
+      <p>지면의 높이는 가시적으로 표면장력의 <p></p> 변화를 보여주기 위해 함께 변화합니다.</p>
+  </div>
+  <div>
+    <label for="temperature">온도:</label>
+    <input type="range" id="temperature" min="30" max="100">
+
+    <label for="concentration">농도:</label>
+    <input type="range" id="concentration" min="1" max="100" step="0.1">
+
+    <label for="polarity">극성:</label>
+    <input type="range" id="polarity" min="1" max="150">
+
+    <label for="molecularWeight">분자량:</label>
+    <input type="range" id="molecularWeight" min="1" max="150">
+
+    <button onclick="updateLiquid()">적용</button>
+  </div>
+
+  <script>
+    // 액체의 표면장력을 계산하는 함수
+    function calculateSurfaceTension(temperature, concentration, polarity, molecularWeight) {
+      // 표면장력 계산 로직을 여기에 구현
+      // 임의의 계산식을 사용
+      return ((temperature + concentration) / (polarity + molecularWeight));
+    }
+
+    // 표면장력에 따라 액체의 모양을 조정
+    function adjustLiquidShape(surfaceTension) {
+      var liquidElement = document.getElementById('liquid');
+      var tableElement = document.getElementById('table');
+      var containerElement = document.getElementById('container');
+      var minHeight = 10; // 최소 높이 설정
+      var maxHeight = 100; // 최대 높이 설정
+      var minWeight = 150;
+      var maxWeight = 100;
+      var height = maxHeight - surfaceTension * (maxHeight - minHeight);
+      var weight = maxWeight - (surfaceTension) * (maxWeight - minWeight);
+      if(height < 10){
+        height = 10;
+      }
+      if(weight > 150){
+        weight = 150;
+      }
+      liquidElement.style.height = height + 'px';
+      liquidElement.style.width = weight + 'px';
+      //containerElement.style.height = height/2 + 'px';
+      var liquidCenter = containerElement.offsetHeight - height / 2;
+      tableElement.style.height = height/2 + 'px';
+      
+    }
+
+    // 사용자 입력에 따라 액체를 업데이트하는 함수
+    function updateLiquid() {
+      var temperature = parseFloat(document.getElementById('temperature').value); // 사용자로부터 온도 입력 받음
+      var concentration = parseFloat(document.getElementById('concentration').value); // 사용자로부터 농도 입력 받음
+      var polarity = parseFloat(document.getElementById('polarity').value); // 사용자로부터 극성 입력 받음
+      var molecularWeight = parseFloat(document.getElementById('molecularWeight').value); // 사용자로부터 분자량 입력 받음
+
+      var surfaceTension = calculateSurfaceTension(temperature, concentration, polarity, molecularWeight);
+      adjustLiquidShape(surfaceTension);
+    }
+    updateLiquid();
+    
+  </script>
+</body>
+</html>
